@@ -111,7 +111,6 @@ class DoublyLinkedList {
 
 		if(this.length > 0 && position >= 0 && position < this.length) {
 			let current = this.head;
-			let previous;
 			let index = 0;
 
 			if(position === 0) {
@@ -128,11 +127,10 @@ class DoublyLinkedList {
 				this.tail.next = null;
 			} else {
 				while(index++ < position) {
-					previous = current;
 					current = current.next;
 				}
-				previous.next = current.next;
-				current.next.prev = previous;
+				current.prev.next = current.next;
+				current.next.prev = current.prev;
 			}
 			this.length--;
 			return true;
@@ -147,7 +145,7 @@ class DoublyLinkedList {
 	 * @return {Any} 链表的头部
 	 */
 	showHead () {
-		return head;
+		return this.head;
 	};
   
 	/**
@@ -155,7 +153,7 @@ class DoublyLinkedList {
 	 * @return {Number} 链表长度
 	 */
 	showLength () {
-		return length;
+		return this.length;
 	};
   
 	/**
@@ -163,7 +161,7 @@ class DoublyLinkedList {
 	 * @return {Any} 链表尾部
 	 */
 	showTail () {
-		return tail;
+		return this.tail;
 	};
 }
 
